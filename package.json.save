@@ -5,7 +5,6 @@
   "description": "a Sails application",
   "keywords": [],
   "dependencies": {
-    "@google/maps": "^0.4.5",
     "ejs": "2.5.5",
     "grunt": "1.0.1",
     "grunt-contrib-clean": "1.0.0",
@@ -20,12 +19,10 @@
     "grunt-sails-linker": "~0.10.1",
     "grunt-sync": "0.5.2",
     "include-all": "^1.0.0",
-    "mongodb": "^3.0.4",
     "rc": "1.0.1",
     "sails": "~0.12.14",
     "sails-disk": "~0.10.9",
-    "sails-mongo": "^0.12.3",
-    "shell-source": "^1.1.0"
+    "google-maps": "@google/maps
   },
   "scripts": {
     "debug": "node debug app.js",
@@ -37,8 +34,5 @@
     "url": "git://github.com/jesus/2C_bikeRoutes_ms.git"
   },
   "author": "jesus",
-  "license": "",
-  "devDependencies": {
-    "grunt-bg-shell": "^2.3.3"
-  }
+  "license": ""
 }

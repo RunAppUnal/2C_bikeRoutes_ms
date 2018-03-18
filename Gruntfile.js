@@ -35,7 +35,6 @@ module.exports = function(grunt) {
     }
   }
 
-
   /**
    * Loads Grunt configuration modules from the specified
    * relative path. These modules should export a function
@@ -78,5 +77,14 @@ module.exports = function(grunt) {
   // Run task functions to configure Grunt.
   invokeConfigFn(taskConfigurations);
   invokeConfigFn(registerDefinitions);
+  
+  var source = require('shell-source');
+
+  source(__dirname + '/app-env', function(err) {
+    if (err) return console.error(err);
+    console.log("API:");
+   
+    console.log(process.env.DIRECTION_API_KEY); // :: 
+  });
 
 };
