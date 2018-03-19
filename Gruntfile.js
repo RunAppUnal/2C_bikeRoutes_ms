@@ -78,13 +78,4 @@ module.exports = function(grunt) {
   invokeConfigFn(taskConfigurations);
   invokeConfigFn(registerDefinitions);
   
-  var source = require('shell-source');
-
-  source(__dirname + '/app-env', function(err) {
-    if (err) return console.error(err);
-    console.log("API:");
-   
-    console.log(process.env.DIRECTION_API_KEY); // :: 
-  });
-
-};
+ };
