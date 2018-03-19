@@ -15,7 +15,6 @@ module.exports.bootstrap = function(cb) {
   source(__dirname + '/../app-env', function(err) {
     if (err) return console.error(err);
     console.log("Enviroment variables setup")
-    //onsole.log(process.env.DIRECTION_API_KEY); // :: 
   });
 
   sails.models.route.native(function (err, collection) {
@@ -25,6 +24,8 @@ module.exports.bootstrap = function(cb) {
       cb();
     });
   });
+
+  
   // It's very important to trigger this callback method when you are finished
   // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)
   //cb();
