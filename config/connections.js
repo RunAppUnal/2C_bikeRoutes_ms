@@ -28,9 +28,9 @@ module.exports.connections = {
   * Installed by default.                                                    *
   *                                                                          *
   ***************************************************************************/
-  localDiskDb: {
-    adapter: 'sails-disk'
-  },
+  // localDiskDb: {
+  //   adapter: 'sails-disk'
+  // },
 
   /***************************************************************************
   *                                                                          *
@@ -59,7 +59,7 @@ module.exports.connections = {
   localMongodb: {
     adapter: 'sails-mongo',
     host: '192.168.99.101',
-    port: 27017,
+    port: 6002,
     // user: 'username', //optional
     // password: 'password', //optional
     // database: 'your_mongo_db_name_here' //optional

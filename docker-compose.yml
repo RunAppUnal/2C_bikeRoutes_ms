@@ -4,7 +4,7 @@ services:
   bikeroutes-db:
     image: mongo
     ports:
-        - 27017:27017
+        - 7002:27017
     environment:
       - MONGO_DATA_DIR=/data/db
       - MONGO_LOG_DIR=/dev/null
@@ -14,8 +14,8 @@ services:
     command: mongod --smallfiles --logpath=/dev/null --quiet
   bikeroutes-ms:
     build: .
-    command: sails lift --verbose --port 3000
+    command: sails lift --verbose --port 6002
     ports:
-      - "3000:3000"
+      - "6002:6002"
     depends_on:
       - bikeroutes-db
