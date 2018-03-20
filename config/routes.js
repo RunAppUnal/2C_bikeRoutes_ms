@@ -36,8 +36,8 @@ module.exports.routes = {
     view: 'homepage'
   },
 
-  'GET /route/findCompany/:id': 'RouteController.findCompany'
-
+  'GET /route/findCompany/:id': 'RouteController.findCompany',
+  'GET /route/find/:user_id': 'RouteController.find'
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *

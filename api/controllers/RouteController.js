@@ -30,6 +30,17 @@ module.exports = {
             console.error("no id, no fun: %O",error);
             res.badRequest("no id, no fun, you must pass a id at the end of the route ");
         }
+    },
+    find: function (req, res) {
+        if(req.params.user_id){
+            Route.find({user_id: req.params.user_id})
+            .then(function (routes) {
+                return res.json(routes); 
+            }).catch(function (error) {
+                console.error("Find user_id error: %o", error);
+                return res.serverError(error);
+            })
+        }
     }
 };
 
