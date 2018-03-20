@@ -1,0 +1,189 @@
+#Test with: http://editor.swagger.io/
+
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: Microservice for Match bike routes
+  description: NodeJS/Sails + MongoDB
+  license:
+    name: Software Architecture 2018-I
+host: 192.168.99.101:6002
+basePath: /
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /route:
+    post:
+      summary: Creates a new route
+      operationId: createRoute
+      parameters:
+        - name: route
+          in: body
+          required: true
+          description: Route Object
+          schema:
+            $ref: '#/definitions/RouteInput'
+            
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request - invalidAttributes
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: Internal Server Error
+    get:
+      summary: Returns all routes
+      operationId: getAllroutes
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/StudentsList'
+        '500':
+          description: Internal Server Error
+  /route/{id}:
+    get:
+      summary: Returns a route with the given id
+      operationId: getRouteById
+      parameters:
+        - name: id
+          in: path
+          description: The id of the route to be returned
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/Student'
+        '404':
+          description: No record found with the specified `id`.
+    put:
+      summary: Updates a route with the given id
+      operationId: updateRoute
+      parameters:
+        - name: id
+          in: path
+          description: The id of the route to be updated
+          required: true
+          type: string
+        - name: route
+          in: body
+          required: true
+          description: Route Object
+          schema:
+            $ref: '#/definitions/RouteInput'
+      responses:
+        '404':
+          description: No record found with the specified `id`
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '400':
+          description: Bad Request invalidAttributes
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: unexpected error
+
+    delete:
+      summary: Deletes a student with the given id
+      operationId: deleteStudent
+      parameters:
+        - name: id
+          in: path
+          description: The id of the student to be deleted
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Ok
+        '500':
+          description: unexpected error
+
+definitions:
+
+  # Students
+  Student:
+    type: object
+    properties:
+      id:
+        type: string
+      user_id:
+        type: integer
+      origin:
+        type: array
+        items:
+          description: coordinates
+          type: number
+          example: [-74.2546,4.1668]
+      destination:
+        type: array
+        items:
+          description: coordinates
+          type: number
+          example: [-74.2546,4.1668]
+      time:
+        type: integer
+      route_points:
+        type: object
+      route_distance:
+        type: number
+
+  RouteInput:
+    type: object
+    properties:
+      user_id:
+        type: integer
+      origin:
+        type: array
+        items:
+          description: coordinates
+          type: number
+          example: [-74.2546,4.1668]
+      destination:
+        type: array
+        items:
+          description: coordinates
+          type: number
+          example: [-74.2546,4.1668]
+      time:
+        type: string
+
+  StudentsList:
+    type: object
+    required:
+      - list
+    properties:
+      list:
+        type: array
+        items:
+          $ref: '#/definitions/Student'
+
+# Errors
+  ErrorModel:
+    type: object
+    required:
+      - user_id
+      - origin
+      - destination
+    properties:
+      user_id:
+        type: integer
+      origin:
+        type: array
+        items:
+          description: coordinates
+          type: number
+          example: [-74.2546,4.1668]
+      destination:
+        type: array
+        items:
+          description: coordinates
+          type: number
+          example: [-74.2546,4.1668]
