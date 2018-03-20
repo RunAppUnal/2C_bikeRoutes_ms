@@ -27,8 +27,7 @@ module.exports = {
          let now = new Date();
          now.setMinutes(now.getMinutes()+60);
          return now;
-       },
-       after: Date.now()
+       }
     },
 
     similar_routes : {

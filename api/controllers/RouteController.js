@@ -31,7 +31,7 @@ module.exports = {
             res.badRequest("no id, no fun, you must pass a id at the end of the route ");
         }
     },
-    find: function (req, res) {
+    findByUser: function (req, res) {
         if(req.params.user_id){
             Route.find({user_id: req.params.user_id})
             .then(function (routes) {
