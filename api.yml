@@ -27,7 +27,7 @@ paths:
           description: Route Object
           schema:
             $ref: '#/definitions/RouteInput'
-            
+
       responses:
         '200':
           description: OK
@@ -92,12 +92,12 @@ paths:
           description: unexpected error
 
     delete:
-      summary: Deletes a student with the given id
+      summary: Deletes a route with the given id
       operationId: deleteStudent
       parameters:
         - name: id
           in: path
-          description: The id of the student to be deleted
+          description: The id of the route to be deleted
           required: true
           type: string
       responses:
