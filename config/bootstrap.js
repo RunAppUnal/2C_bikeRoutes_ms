@@ -12,12 +12,16 @@ var source = require('shell-source');
 
 module.exports.bootstrap = function(cb) {
   
-  source(__dirname + '/../app-env', function(err) {
+  /*source(__dirname + '/../app-env', function(err) {
     if (err) return console.error(err);
     console.log("Enviroment variables setup")
-  });
+  });*/
 
   sails.models.route.native(function (err, collection) {
+    if(err){
+      console.error("Sails Native Indexes error :%O", err);
+      
+    }
     collection.createIndex({ time: -1, route_points: '2dsphere' }, function () {
       // It's very important to trigger this callack method when you are finished 
       // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)

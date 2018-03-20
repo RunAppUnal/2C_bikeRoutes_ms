@@ -1,0 +1,12 @@
+version: '2.1'
+
+services:
+  2c_bikeroutes_ms:
+    image: 2c_bikeroutes_ms
+    build: .
+    environment:
+      NODE_ENV: development
+    ports:
+      - 6005:6005
+      - 9229:9229
+    command: node --inspect=0.0.0.0:9229 app.js

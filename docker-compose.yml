@@ -1,0 +1,21 @@
+version: '2.1'
+
+services:
+  bikeroutes-db:
+    image: mongo
+    ports:
+        - 27017:27017
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/null
+      - MONGO_HOST=bikeroutes-db
+    volumes:
+      - /data/db:/data/db
+    command: mongod --smallfiles --logpath=/dev/null --quiet
+  bikeroutes-ms:
+    build: .
+    command: sails lift --verbose --port 3000
+    ports:
+      - "3000:3000"
+    depends_on:
+      - bikeroutes-db
