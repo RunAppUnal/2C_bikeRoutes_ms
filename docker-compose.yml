@@ -4,14 +4,14 @@ services:
   bikeroutes-db:
     image: mongo
     ports:
-        - 7002:27017
+        - 7002:7002
     environment:
       - MONGO_DATA_DIR=/data/db
       - MONGO_LOG_DIR=/dev/null
       - MONGO_HOST=bikeroutes-db
     volumes:
       - /data/db:/data/db
-    command: mongod --smallfiles --logpath=/dev/null --quiet
+    command: mongod --smallfiles --logpath=/dev/null --port 7002 -v
   bikeroutes-ms:
     build: .
     command: sails lift --verbose --port 6002
