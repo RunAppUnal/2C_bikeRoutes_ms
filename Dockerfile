@@ -12,7 +12,7 @@ RUN npm cache verify
 
 RUN npm install -g
 
-
+EXPOSE 6002
 
 #EXPOSE 6005
 #CMD npm start
