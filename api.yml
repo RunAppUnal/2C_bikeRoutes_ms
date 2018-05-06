@@ -7,7 +7,7 @@ info:
   description: NodeJS/Sails + MongoDB
   license:
     name: Software Architecture 2018-I
-host: 192.168.99.101:6002
+host: 192.168.99.102:6002
 basePath: /
 schemes:
   - http
