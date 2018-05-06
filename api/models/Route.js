@@ -34,6 +34,13 @@ module.exports = {
       type: 'array',
     },
 
+    match_routes : {
+      type: 'array',
+      defaultsTo: function(){
+        return new Array();
+      }
+    },
+
     origin : { 
       type: 'json',//coordinates
       required: true
@@ -61,7 +68,7 @@ module.exports = {
     },
 
     findCompany: function(route,callback){
-      var route = route || this;
+      route = route || this;
       Route.native(function (error, collection) {
         if (error) return callback(error);
         let a = new Date(new Date(route.time).setMinutes(route.time.getMinutes()-10));
@@ -72,7 +79,7 @@ module.exports = {
             $geoWithin:{
               $centerSphere:[
                 route.origin, //circle center
-                2/6378.1//2 kilometer in radians - circle radius
+                4/6378.1//4 kilometer in radians - circle radius
               ]
             }
           }

@@ -6,6 +6,45 @@
  */
 
 module.exports = {
+    match: function(req, res){       
+        Route.find({ id: [req.params.id1, req.params.id2]}).then(function (routes) {
+            
+            if(!routes[0].match_routes){
+                routes[0].match_routes = [];
+            }
+            if(!routes[1].match_routes){
+                routes[1].match_routes = [];
+            }
+            console.log(routes[0].match_routes)
+            if(!(routes[0].match_routes.indexOf(routes[1].id) > -1)){
+                routes[0].match_routes.push(routes[1].id)    
+                Route.update({id:routes[0].id},{match_routes:routes[0].match_routes})
+                    .exec(function afterwards(err, updated){
+                        if (err) {
+                            console.error("Match function error 2: ", err);
+                            return;
+                        }
+                        
+                        console.log('Updated 1; ', updated);
+                    });
+
+                routes[1].match_routes.push(routes[0].id)        
+                Route.update({id:routes[1].id},{match_routes:routes[1].match_routes})
+                .exec(function afterwards(err, updated){
+                    if (err) {
+                        console.error("Match function error 2: ", err);
+                        return;
+                    }
+                    console.log('Updated 2; ', updated);
+                });
+            }else{
+                console.log("Already match");
+            }
+            
+            return res.json(routes); 
+        })
+    },
+
 	findCompany: function (req, res) {
         if(req.params.id){
             Route.findOne({id: req.params.id})
