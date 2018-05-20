@@ -58,10 +58,10 @@ module.exports.connections = {
   ***************************************************************************/
   localMongodb: {
     adapter: 'sails-mongo',
-    //host: 'localhost',
-    host: '192.168.99.102',
-    //port: 27017
-    port: 7002,
+    host: 'bikeroutes-db',
+    //host: '192.168.99.102',
+    port: 7002
+    //port: 7002,
     // user: 'username', //optional
     // password: 'password', //optional
     // database: 'your_mongo_db_name_here' //optional
